@@ -1,13 +1,14 @@
 import { CardListContainer, Container } from "./styles";
-import { CardList } from "@components/CardList";
-import { usersMock } from "../../mockup/users";
 import { FlatList } from "react-native";
 import { Card, UserInterface } from "@components/Card";
-
+import { useGetUsersQuery } from "@services/usersApi";
+import {useState} from 'react'
 interface CardI {
   item: UserInterface;
 }
 export function Home() {
+  const {data} = useGetUsersQuery(0);
+
     const chunkSize = 10;
 
     const renderUserCard = ({ item } : CardI) => {
@@ -20,8 +21,8 @@ export function Home() {
     const renderUserList = () => {
         // Dividir os usuários em listas horizontais
         const userList = [];
-        for (let i = 0; i < usersMock.length; i += chunkSize) {
-          const chunk : UserInterface[] = usersMock.slice(i, i + chunkSize);
+        for (let i = 0; i < data.users?.length; i += chunkSize) {
+          const chunk : UserInterface[] = data.users.slice(i, i + chunkSize);
           userList.push(
             <FlatList
               key={`list-${i}`}
