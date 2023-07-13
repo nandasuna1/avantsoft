@@ -21,8 +21,8 @@ export function Home() {
     const renderUserList = () => {
         // Dividir os usuários em listas horizontais
         const userList = [];
-        for (let i = 0; i < data.users?.length; i += chunkSize) {
-          const chunk : UserInterface[] = data.users.slice(i, i + chunkSize);
+        for (let i = 0; i < data?.users?.length; i += chunkSize) {
+          const chunk : UserInterface[] = data?.users.slice(i, i + chunkSize);
           userList.push(
             <FlatList
               key={`list-${i}`}
