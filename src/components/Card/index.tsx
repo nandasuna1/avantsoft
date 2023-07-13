@@ -2,6 +2,7 @@ import Text from "@components/Text";
 import { Container, DetailSection, Message, Section, RowOneColumDetail, RowTwoColumDetail, Column } from "./styles";
 import { LinearGradient } from 'expo-linear-gradient';
 import theme from "../../theme";
+import {memo} from "react";
 
 export interface UserInterface {
     name?: string,
@@ -13,7 +14,7 @@ type Props = {
     userData?: UserInterface
 }
 
-export function Card({userData}: Props) {
+export const Card = memo(({userData}: Props) => {
     const { BLUE_500, GREEN} = theme.COLORS
     return(
         <LinearGradient
@@ -49,4 +50,4 @@ export function Card({userData}: Props) {
         </Container>
         </LinearGradient>
     )
-}
+})
